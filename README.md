@@ -14,13 +14,8 @@
 ### 1. 游戏配置
 请参考 [MiniGameConfig.cs](Docs/Assets/Plugins/IvyMiniGameAssets/config/MiniGameConfig.cs)
 
-### 2. 报告游戏启动
-游戏加载完毕即将进入游戏画面时调用
-```javascript
-MiniSdk.MustReportGameStart();
-```
 
-### 3. 微信相关
+### 2. 微信相关
 #### 微信登陆
 ```javascript
 RiseSdkListener.Event_LoginResult += (int state, string str) =>
@@ -51,7 +46,7 @@ RiseSdk.Instance.IsLogin();
 string str = RiseSdk.Instance.Me();
 ```
 
-### 4. 计费相关
+### 3. 计费相关
 #### 获取计费点信息
 ```javascript
 string str = RiseSdk.Instance.GetPaymentData(billId);
@@ -87,25 +82,25 @@ string str = RiseSdk.Instance.GetPaymentData(billId);
 }
 ```
 
-### 5. 客服
+### 4. 客服
 #### 打开微信客服
 ```javascript
 RiseSdk.Instance.ShowAIHelp("", "");
 ```
 
-### 6. 系统环境
+### 5. 系统环境
 #### 是否为IOS
 ```javascript
 bool state = RiseSdk.Instance.IsIOSSystem();
 ```
 
-### 7. 事件
+### 6. 事件
 ```javascript
 RiseSdk.Instance.TrackEvent(string event, string keyValueData);
 ```
 
 
-### 8. 云函数
+### 7. 云函数
 #### 云函数api说明文档
 参照 [腾讯云函数接口文档(1).docx](docs/腾讯云函数接口文档(1).docx)
 
