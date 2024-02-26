@@ -14,7 +14,11 @@ namespace Ivy.MiniGame
         public void InitSdk(System.Action<int> ret)
         {
             //微信sdk初始化 调用一次
-            WeChatWASM.WX.InitSDK(code => { InitCloud(code, ret); });
+            WeChatWASM.WX.InitSDK(code =>
+            {
+                ReportGameStart();
+                InitCloud(code, ret);
+            });
             WeChatWASM.WX.GetSystemInfoAsync(new WeChatWASM.GetSystemInfoAsyncOption
             {
                 success = ret => { MiniGameConfig.platform = ret.platform; }
@@ -99,7 +103,8 @@ namespace Ivy.MiniGame
                         loginSuccess?.Invoke(content);
                     }, errorMsg => { loginFail?.Invoke(errorMsg); });
 
-                },fail = resp =>
+                },
+                fail = resp =>
                 {
                     loginFail?.Invoke(resp.errMsg);
                 }
@@ -369,7 +374,7 @@ namespace Ivy.MiniGame
                 {
                     WX.RestartMiniProgram(new RestartMiniProgramOption()
                     {
-                        
+
                     });
                 }
             });

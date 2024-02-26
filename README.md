@@ -7,12 +7,12 @@
 ## 1. 导入微信小游戏sdk
     1. [导入微信小游戏sdk](https://gitee.com/wechat-minigame/minigame-unity-webgl-transform#https://gitee.com/link?target=https%3A%2F%2Fgame.weixin.qq.com%2Fcgi-bin%2Fgamewxagwasmsplitwap%2Fgetunityplugininfo%3Fdownload%3D1)
 	2. 导入 sdk
-	3. 添加宏 CN_WX 
+	3. 添加宏CN_WX
 	
 ## 2. 接口说明
 
 ### 1. 游戏配置
-请参考 Assets/Plugins/IvyMiniGameAssets/config/MiniGameConfig.cs
+请参考 [MiniGameConfig.cs](Docs/Assets/Plugins/IvyMiniGameAssets/config/MiniGameConfig.cs)
 
 
 ### 2. 微信相关
@@ -47,6 +47,8 @@ string str = RiseSdk.Instance.Me();
 ```
 
 ### 3. 计费相关
+计费点信息需要提前录入管理后台，否则拉起支付时会出现异常，请联系运营人员录入
+
 #### 获取计费点信息
 ```javascript
 string str = RiseSdk.Instance.GetPaymentData(billId);
@@ -94,8 +96,15 @@ RiseSdk.Instance.ShowAIHelp("", "");
 bool state = RiseSdk.Instance.IsIOSSystem();
 ```
 
-### 6. 云函数
+### 6. 事件
+```javascript
+RiseSdk.Instance.TrackEvent(string event, string keyValueData);
+```
+
+
+### 7. 云函数
 #### 云函数api说明文档
+参照 [腾讯云函数接口文档(1).docx](docs/腾讯云函数接口文档(1).docx)
 
 #### 使用示例
 ```javascript
