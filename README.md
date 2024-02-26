@@ -102,7 +102,7 @@ RiseSdk.Instance.TrackEvent(string event, string keyValueData);
 
 ### 7. 云函数
 #### 云函数api说明文档
-参照 [腾讯云函数接口文档(1).docx](file://腾讯云函数接口文档(1).docx)
+参照 [腾讯云函数接口文档(1).docx](docs/腾讯云函数接口文档(1).docx)
 
 #### 使用示例
 ```javascript
