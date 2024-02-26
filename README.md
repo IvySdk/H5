@@ -94,7 +94,13 @@ RiseSdk.Instance.ShowAIHelp("", "");
 bool state = RiseSdk.Instance.IsIOSSystem();
 ```
 
-### 6. 云函数
+### 6. 事件
+```javascript
+RiseSdk.Instance.TrackEvent(string event, string keyValueData);
+```
+
+
+### 7. 云函数
 #### 云函数api说明文档
 参照 [腾讯云函数接口文档(1).docx](file://腾讯云函数接口文档(1).docx)
 
