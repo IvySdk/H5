@@ -58,7 +58,7 @@ string str = RiseSdk.Instance.GetPaymentData(billId);
 string str = RiseSdk.Instance.GetPaymentData(billId);
 ```
 #### 计费点配置
-请参考示例中的 payConfig.json
+请参考示例中的 [payConfig.json](Doc/Assets/Resources/payConfig.json)
 ```javascript
 {
     "1": {
