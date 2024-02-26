@@ -47,6 +47,8 @@ string str = RiseSdk.Instance.Me();
 ```
 
 ### 3. 计费相关
+计费点信息需要提前录入管理后台，否则拉起支付时会出现异常，请联系运营人员录入
+
 #### 获取计费点信息
 ```javascript
 string str = RiseSdk.Instance.GetPaymentData(billId);
