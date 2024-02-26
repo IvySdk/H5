@@ -7,7 +7,7 @@
 ## 1. 导入微信小游戏sdk
     1. [导入微信小游戏sdk](https://gitee.com/wechat-minigame/minigame-unity-webgl-transform#https://gitee.com/link?target=https%3A%2F%2Fgame.weixin.qq.com%2Fcgi-bin%2Fgamewxagwasmsplitwap%2Fgetunityplugininfo%3Fdownload%3D1)
 	2. 导入 sdk
-	3. 添加宏 CN_WX 
+	3. 添加宏CN_WX
 	
 ## 2. 接口说明
 
@@ -96,6 +96,7 @@ bool state = RiseSdk.Instance.IsIOSSystem();
 
 ### 6. 云函数
 #### 云函数api说明文档
+参照 [腾讯云函数接口文档(1).docx](file://腾讯云函数接口文档(1).docx)
 
 #### 使用示例
 ```javascript
