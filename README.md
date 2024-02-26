@@ -12,7 +12,7 @@
 ## 2. 接口说明
 
 ### 1. 游戏配置
-请参考 Assets/Plugins/IvyMiniGameAssets/config/MiniGameConfig.cs
+请参考 [MiniGameConfig.cs](Docs/Assets/Plugins/IvyMiniGameAssets/config/MiniGameConfig.cs)
 
 
 ### 2. 微信相关
