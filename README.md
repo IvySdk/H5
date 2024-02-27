@@ -4,10 +4,20 @@
     3. 工具: Assets/Plugins/Utils/
     4. 抖音sdk: Assets/Plugins/ByteGame/
     
-## 1. 导入微信小游戏sdk
-    1. [导入微信小游戏sdk](https://gitee.com/wechat-minigame/minigame-unity-webgl-transform#https://gitee.com/link?target=https%3A%2F%2Fgame.weixin.qq.com%2Fcgi-bin%2Fgamewxagwasmsplitwap%2Fgetunityplugininfo%3Fdownload%3D1)
-	2. 导入 sdk
-	3. 添加宏CN_WX
+## 1. 使用方式
+##### I. 安装微信小游戏sdk
+1. Package方式安装
+打开游戏工程 -> Unity Editor 菜单栏 -> Package Manager -> 右上方“+” -> Add Package from git URL
+URL 地址为：
+```javascript
+https://github.com/wechat-miniprogram/minigame-tuanjie-transform-sdk.git
+```
+详细文档请参考
+```javascript
+https://gitee.com/wechat-minigame/minigame-unity-webgl-transform#/wechat-minigame/minigame-unity-webgl-transform/blob/main/Design/SDKInstaller.md
+```
+##### II. 导入 sdk
+##### III.  添加宏 IVYSDK_WX
 	
 ## 2. 接口说明
 
@@ -18,45 +28,75 @@
 ### 2. 微信相关
 #### 微信登陆
 ```javascript
-RiseSdkListener.Event_LoginResult += (int state, string str) =>
-{
-	if (state == 1)
-	{
-		Ivy.Utils.Log.Print("login success");
-	}
-	else
-	{
-		Ivy.Utils.Log.Print("login fail");
-	}
-};
-
- RiseSdk.Instance.Login();
+IvySdk.Instance.Login((data) => { 
+//登陆成功
+}, (err) => { 
+//登陆失败
+});
 ```
 #### 微信登陆状态判断
 ```javascript
- RiseSdkListener.Event_CheckPreLoginState += (bool state) =>
- {
-	Ivy.Utils.Log.Print($"log state::{state}");
-};
-		
-RiseSdk.Instance.IsLogin();
+IvySdk.Instance.IsLogin((state) =>
+{
+
+});
 ```
+##### 登陆示例
+```javascript
+IvySdk.Instance.IsLogin((state) =>
+{
+	if(!state){
+			IvySdk.Instance.Login((data) => { 
+			//登陆成功
+			}, (err) => { 
+			//登陆失败
+			});
+	}
+});
+```
+
 #### 登陆用户信息
 ```javascript
-string str = RiseSdk.Instance.Me();
+string str = IvySdk.Instance.LoggedUser();
 ```
+##### 微信用户信息示例
+```javascript
+{
+	"logInfo":{
+		"openId":"",
+		"unionId":""
+	}
+}
+```
+
 
 ### 3. 计费相关
 计费点信息需要提前录入管理后台，否则拉起支付时会出现异常，请联系运营人员录入
 
 #### 获取计费点信息
 ```javascript
-string str = RiseSdk.Instance.GetPaymentData(billId);
+string str = IvySdk.Instance.GetPaymentData(billId);
 ```
 #### 支付
 ```javascript
-string str = RiseSdk.Instance.GetPaymentData(billId);
+IvySdk.Instance.Pay(billId);
+string str = IvySdk.Instance.Pay(billId, payload);
 ```
+
+#### 计费回调
+```javascript
+IvySdkListener.OnPaymentEvent += (IvySdk.PaymentResult result, int i, string str) =>
+{
+	Ivy.Utils.Log.Print($"pay result::{result} {i} {str}");
+};
+
+IvySdkListener.OnPaymentWithPayloadEvent += (IvySdk.PaymentResult result, int i, string str, string str1) =>
+{
+	Ivy.Utils.Log.Print($"pay result::{result} {i} {str} {str1}");
+};
+```
+
+
 #### 计费点配置
 请参考示例中的 [payConfig.json](Doc/Assets/Resources/payConfig.json)
 ```javascript
@@ -87,18 +127,18 @@ string str = RiseSdk.Instance.GetPaymentData(billId);
 ### 4. 客服
 #### 打开微信客服
 ```javascript
-RiseSdk.Instance.ShowAIHelp("", "");
+IvySDK.Instance.ShowHelp();
 ```
 
 ### 5. 系统环境
 #### 是否为IOS
 ```javascript
-bool state = RiseSdk.Instance.IsIOSSystem();
+bool state = IvySDK.Instance.IsIOSSystem();
 ```
 
 ### 6. 事件
 ```javascript
-RiseSdk.Instance.TrackEvent(string event, string keyValueData);
+IvySDK.Instance.LogEvent(string event, string keyValueData);
 ```
 
 
@@ -108,21 +148,15 @@ RiseSdk.Instance.TrackEvent(string event, string keyValueData);
 
 #### 使用示例
 ```javascript
-        RiseSdkListener.OnCloudFunctionResult += (string api, string data) =>
+        IvySdkListener.OnTencentCloudFunctionSuccess += (string api, string data) =>
         {
             Ivy.Utils.Log.Print($"cloud func:: api:{api} data:{data}");
         };
 
-        RiseSdkListener.OnCloudFunctionFailed += (string api) =>
+        IvySdkListener.OnTencentCloudFunctionFail += (string api) =>
         {
             Ivy.Utils.Log.Print($"cloud func:: api:{api} failed");
         };
 
-            Dictionary<string, object> _dict = new Dictionary<string, object>()
-            {
-                {"appid", Ivy.MiniGame.MiniGameConfig.appid},
-                {"uuid", Ivy.MiniGame.MiniGameConfig.openId},
-                {"login_code", Ivy.MiniGame.MiniGameConfig.LoginCode},
-            };
-            RiseSdk.Instance.CallTxCloudFunc("api_timestamp", _dict.ToString());
+ 		IvySdk.Instance.CallTencentCloudFunction(api_key,  param);
 ```
