@@ -1,0 +1,93 @@
+{
+  "title": "秘境消除故事",
+  "data": [
+    {
+      "payId": "1",
+      "name": "20钻石",
+      "skuId": "com.ivymerge.20gems",
+      "price": 600,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_01.png",
+      "description": "钻石*20"
+    },
+    {
+      "payId": "2",
+      "name": "100钻石",
+      "skuId": "com.ivymerge.100gems",
+      "price": 3000,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_02.png",
+      "description": "钻石*100"
+    },
+    {
+      "payId": "3",
+      "name": "250钻石",
+      "skuId": "com.ivymerge.250gems",
+      "price": 6800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_03.png",
+      "description": "钻石*250"
+    },
+    {
+      "payId": "4",
+      "name": "600钻石",
+      "skuId": "com.ivymerge.600gems",
+      "price": 12800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_04.png",
+      "description": "钻石*600"
+    },
+    {
+      "payId": "5",
+      "name": "2000钻石",
+      "skuId": "com.ivymerge.2000gems",
+      "price": 32800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_05.png",
+      "description": "钻石*2000"
+    },
+    {
+      "payId": "6",
+      "name": "4500钻石",
+      "skuId": "com.ivymerge.4500gems",
+      "price": 64800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_06.png",
+      "description": "钻石*4500"
+    },
+    {
+      "payId": "7",
+      "name": "30元超值礼包",
+      "skuId": "com.ivymerge.smallpack",
+      "price": 3000,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_04.png",
+      "description": "钻石*100、恶作剧精灵蛋*3"
+    },
+    {
+      "payId": "9",
+      "name": "68元超值礼包",
+      "skuId": "com.ivymerge.middlepack",
+      "price": 6800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_05.png",
+      "description": "钻石*250、水精灵蛋*3、发光的精灵之花*1"
+    },
+    {
+      "payId": "11",
+      "name": "128元超值礼包",
+      "skuId": "com.ivymerge.bigpack",
+      "price": 12800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_05.png",
+      "description": "钻石*600、牙仙子蛋巢*1、2级精致的盆栽花*1、超级蛋碎片*1"
+    },
+    {
+      "payId": "13",
+      "name": "328元超值礼包",
+      "skuId": "com.ivymerge.superpack",
+      "price": 32800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_06.png",
+      "description": "钻石*2000、星精灵蛋巢*1、灿烂的精灵花*1、超级蛋碎片*2"
+    },
+    {
+      "payId": "15",
+      "name": "648元超值礼包",
+      "skuId": "com.ivymerge.superbigpack",
+      "price": 64800,
+      "imageUrl":"https://imgcdn.bergekrish.com/mergetales/Diamond_06.png",
+      "description": "钻石*4500、现代方尖碑*1、热诚的精灵之花*1、超级蛋碎片*4"
+    }
+  ]
+}
