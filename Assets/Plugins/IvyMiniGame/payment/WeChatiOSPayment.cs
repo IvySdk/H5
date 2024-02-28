@@ -25,7 +25,7 @@ namespace Ivy.Pay
                 Utils.Log.Print($"pConfig is null");
                 return;
             }
-            
+
             //不同的小游戏要查询对应服务器的路由，来分散访问压力
             Utils.HttpUtil.I.HttpPostWithoutTimeout("https://wxapi.winwingplane.cn:8081/queryip", "", (ret, ip) =>
             {
@@ -33,7 +33,7 @@ namespace Ivy.Pay
                 if (ret != Utils.SdkErrorCode.Ok) return;
                 var outTradeNo = MiniGame.PaymentManager.GenerateOrderNo();
                 MiniGame.MiniGameConfig.clientIp = ip;
-                
+
                 //这部分是需要返回给客户端的参数
                 QueryPaymentResp resp = new QueryPaymentResp();
                 resp.code = 1;
@@ -45,7 +45,7 @@ namespace Ivy.Pay
                     payload = payload
                 };
                 var respContent = JsonUtility.ToJson(resp);
-                
+
                 WeChatWASM.WX.OpenCustomerServiceConversation(new WeChatWASM.OpenCustomerServiceConversationOption
                 {
                     showMessageCard = true,
@@ -61,7 +61,7 @@ namespace Ivy.Pay
                     complete = ret =>
                     {
                         Utils.Log.Print($"complete:{ret.errMsg}");
-                        Cloud.CloudStorage.CallFunctionToSelf("pay_queryOrderLocal", 
+                        Cloud.CloudStorage.CallFunctionToSelf("pay_queryOrderLocal",
                             new Dictionary<string, object>
                             {
                                 ["outTradeNo"] = outTradeNo,
@@ -70,9 +70,10 @@ namespace Ivy.Pay
                             (action, content) =>
                             {
                                 MiniGame.PaymentManager.ParsePayResponse(action, respContent);
-                            }, 
-                            msg => {
-                                Utils.OperatorDispatcher.I.StartCoroutine(QueryWechatPayment(payId, outTradeNo, 1 ,respContent));
+                            },
+                            msg =>
+                            {
+                                Utils.OperatorDispatcher.I.StartCoroutine(QueryWechatPayment(payId, outTradeNo, 1, respContent));
                             });
                     }
                 });
@@ -87,9 +88,9 @@ namespace Ivy.Pay
                 MiniGame.PaymentManager.failPayCall?.Invoke(payId);
                 yield break;
             }
-            yield return new WaitForSeconds(4f);;
+            yield return new WaitForSeconds(4f); ;
             count += 1;
-            Cloud.CloudStorage.CallFunctionToSelf("pay_queryOrderLocal", 
+            Cloud.CloudStorage.CallFunctionToSelf("pay_queryOrderLocal",
                 new Dictionary<string, object>
                 {
                     ["outTradeNo"] = tradeNo,
@@ -98,8 +99,9 @@ namespace Ivy.Pay
                 (action, content) =>
                 {
                     MiniGame.PaymentManager.ParsePayResponse(action, respContent);
-                }, 
-                msg => {
+                },
+                msg =>
+                {
                     Utils.OperatorDispatcher.I.StartCoroutine(QueryWechatPayment(payId, tradeNo, count, respContent));
                 });
         }

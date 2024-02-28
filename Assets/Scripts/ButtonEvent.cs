@@ -37,6 +37,7 @@ public class ButtonEvent : MonoBehaviour
         {
             Ivy.Utils.Log.Print($"pay result::{result} {i} {str} {str1}");
         };
+
     }
 
     // Start is called before the first frame update
@@ -97,7 +98,13 @@ public class ButtonEvent : MonoBehaviour
                 {"uuid", Ivy.MiniGame.MiniGameConfig.openId},
                 {"login_code", Ivy.MiniGame.MiniGameConfig.LoginCode},
             };
-            IvySdk.Instance.CallTencentCloudFunction("api_timestamp", _dict.ToString());
+            IvySdk.Instance.CallTencentCloudFunction("api_timestamp", _dict.ToString(), (data) =>
+            {
+
+            }, (api_key) =>
+            {
+
+            });
         });
 
     }

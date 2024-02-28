@@ -148,15 +148,11 @@ IvySDK.Instance.LogEvent(string event, string keyValueData);
 
 #### 使用示例
 ```javascript
-        IvySdkListener.OnTencentCloudFunctionSuccess += (string api, string data) =>
-        {
-            Ivy.Utils.Log.Print($"cloud func:: api:{api} data:{data}");
-        };
-
-        IvySdkListener.OnTencentCloudFunctionFail += (string api) =>
-        {
-            Ivy.Utils.Log.Print($"cloud func:: api:{api} failed");
-        };
-
- 		IvySdk.Instance.CallTencentCloudFunction(api_key,  param);
+            IvySdk.Instance.CallTencentCloudFunction(api_key, param, (data) =>
+            {
+                Ivy.Utils.Log.Print($"cloud func success:: data:{data}");
+            }, (api_key) =>
+            {
+                Ivy.Utils.Log.Print($"cloud func:: api:{api_key} failed");
+            });
 ```

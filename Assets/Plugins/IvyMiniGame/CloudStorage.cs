@@ -137,19 +137,19 @@ namespace Ivy.Cloud
         /// </summary>
         /// <param name="action">方法名</param>
         /// <param name="content">所需参数内容</param>
-        public static void CallFunction(string action, string content)
+        public static void CallFunction(string action, string content, Action<string> onSuccess, Action<string> onFail)
         {
             var obj = JsonConvert.DeserializeObject<Dictionary<string, object>>(content);
             CallFunctionToGame(action, obj, (functionName, data) =>
             {
-                IvySdkListener.Instance.OnTencentCloudFuncSuccess(JsonUtility.ToJson(new CloudFuncData
+                onSuccess?.Invoke(JsonUtility.ToJson(new CloudFuncData
                 {
                     funcKey = functionName,
                     count = 1,
                     index = 1,
                     data = data
                 }));
-            }, functionName => { IvySdkListener.Instance.OnTencentCloudFuncFail(functionName); });
+            }, functionName => { onFail?.Invoke($"{functionName}"); });
         }
 
         /// <summary> 给自己(sdk)用的云函数接口;针对云函数失败信息直接处理</summary>

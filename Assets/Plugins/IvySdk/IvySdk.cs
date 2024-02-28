@@ -260,9 +260,9 @@ namespace com.Ivy
 
         #region 腾讯云函数
 
-        public void CallTencentCloudFunction(string api, string content)
+        public void CallTencentCloudFunction(string api, string content, Action<string> onSuccess, Action<string> onFail)
         {
-            CloudStorage.CallFunction(api, content);
+            CloudStorage.CallFunction(api, content, onSuccess, onFail);
         }
 
         #endregion
