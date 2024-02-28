@@ -182,11 +182,11 @@ namespace Ivy.MiniGame
             var payIdConfig = PaymentManager.GetPayConfig(billingId.ToString());
             Dictionary<string, object> payData = new Dictionary<string, object>();
             payData["type"] = "inapp";
-            payData["payid"] = payIdConfig.payid;
-            payData["currency"] = payIdConfig.currency;
+            payData["payid"] = payIdConfig.payId;
+            // payData["currency"] = payIdConfig.currency;
             payData["price"] = payIdConfig.price;
-            payData["rmb"] = payIdConfig.rmb;
-            payData["amount"] = payIdConfig.amount;
+            // payData["rmb"] = payIdConfig.rmb;
+            // payData["amount"] = payIdConfig.amount;
             payData["desc"] = payIdConfig.desc;
             return JsonConvert.SerializeObject(payData);
         }

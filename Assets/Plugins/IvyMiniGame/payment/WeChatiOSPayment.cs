@@ -49,8 +49,8 @@ namespace Ivy.Pay
                 WeChatWASM.WX.OpenCustomerServiceConversation(new WeChatWASM.OpenCustomerServiceConversationOption
                 {
                     showMessageCard = true,
-                    sendMessageTitle = "秘境消除故事",
-                    sendMessageImg = "https://mergetales-1253615945.cos.ap-nanjing.myqcloud.com/WChat_Resource/wchat_pay_guide.png",
+                    sendMessageTitle = MiniGame.MiniGameConfig.appTitle,
+                    sendMessageImg = pConfig.imageUrl,
                     sessionFrom = JsonUtility.ToJson(new ServiceMessage
                     {
                         client_ip = MiniGame.MiniGameConfig.clientIp,

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LitJson;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Ivy.MiniGame
 {
@@ -14,13 +15,12 @@ namespace Ivy.MiniGame
     [System.Serializable]
     public class PayIdConfig
     {
-        [SerializeField] public string payid;
-        [SerializeField] public string currency;
-        [SerializeField] public string price;
-        [SerializeField] public int amount;
+        [SerializeField] public string payId;
+        [SerializeField] public string name;
+        [SerializeField] public string skuId;
+        [SerializeField] public int price;
         [SerializeField] public string desc;
-        [SerializeField] public int rmb;
-        [SerializeField] public string ThumbUrl;
+        [SerializeField] public string imageUrl;
     }
 
     public static class MiniGameConfig
@@ -29,6 +29,8 @@ namespace Ivy.MiniGame
         public static string versionName;
 
         public static string versionCode;
+
+        public static string appTitle;
 
         //系统
         public static string os;
@@ -96,6 +98,7 @@ namespace Ivy.MiniGame
         //todo 修改配置的加载形式
         public static void LoadMiniGameConfig()
         {
+            appTitle = "秘境消除故事";
             versionName = "1.0.0"; //VersionSetting.GetInstance().mainVersionName;
             versionCode = "1"; //VersionSetting.GetInstance().mainVersionCode;
             trackConfig = new ClickHouseConfig
@@ -215,22 +218,27 @@ namespace Ivy.MiniGame
             //         initFinished = true;
             //     });
             TextAsset asset = Resources.Load<TextAsset>("payConfig");
-            JsonData jsonData = JsonMapper.ToObject(asset.text);
             List<PayIdConfig> payIdConfigs = new List<PayIdConfig>();
-            foreach (string key in jsonData.Keys)
+            JsonData jsonData = JsonMapper.ToObject(asset.text);
+            JsonData dataArray = jsonData["data"];
+            if (dataArray.IsArray)
             {
-                var data = jsonData[key];
-                payIdConfigs.Add(new PayIdConfig()
+                foreach (JsonData item in dataArray)
                 {
-                    payid = data["productId"].ToString(),
-                    currency = data["currency"].ToString(),
-                    price = data["price"].ToString(),
-                    rmb = int.Parse(data["rmb"].ToString()),
-                    amount = int.Parse(data["feeValue"].ToString()),
-                    desc = data["desc"].ToString(),
-                });
+                    payIdConfigs.Add(new PayIdConfig()
+                    {
+                        payId = item["payId"].ToString(),
+                        name = item["name"].ToString(),
+                        price = (int)item["price"],
+                        desc = item["desc"].ToString(),
+                        imageUrl = item["imageUrl"].ToString()
+                    });
+                }
             }
-
+            payIdConfigs.ForEach(item =>
+            {
+                Debug.Log($"{JsonConvert.SerializeObject(item)}");
+            });
             payConfigArray = payIdConfigs;
             initFinished = true;
 #endif

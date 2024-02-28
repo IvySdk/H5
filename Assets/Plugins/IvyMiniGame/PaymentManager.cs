@@ -58,7 +58,7 @@ namespace Ivy.MiniGame
             //计费点重新写入字典
             foreach (var pConfig in MiniGameConfig.payConfigArray)
             {
-                _payDict[pConfig.payid] = pConfig;
+                _payDict[pConfig.payId] = pConfig;
             }
         }
 
@@ -76,7 +76,7 @@ namespace Ivy.MiniGame
                 return;
             }
 
-            GamePayment(payId, pConfig.desc, pConfig.amount, "");
+            GamePayment(payId, pConfig.desc, pConfig.price, "");
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Ivy.MiniGame
             {
                 return;
             }
-            GamePayment(payId, pConfig.desc, pConfig.amount, payload);
+            GamePayment(payId, pConfig.desc, pConfig.price, payload);
         }
 
         //通过付费id查询付费配置
