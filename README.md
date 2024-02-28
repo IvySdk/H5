@@ -101,26 +101,32 @@ IvySdkListener.OnPaymentWithPayloadEvent += (IvySdk.PaymentResult result, int i,
 请参考示例中的 [payConfig.json](Doc/Assets/Resources/payConfig.json)
 ```javascript
 {
-    "1": {
-        "title": "20钻石",
-        "productId": "1",
-        "currency": "CNY",
-        "price": "6元(测试)",
-        "feeValue": 100.0,
-        "rmb": 1,
-        "amount": 100,
-        "desc": "20钻石"
-    },
-    "2": {
-        "title": "100钻石",
-        "productId": "2",
-        "currency": "CNY",
-        "price": "30元(测试)",
-        "feeValue": 100.0,
-        "rmb": 1,
-        "amount": 100,
-        "desc": "100钻石"
-    }
+    "data":[
+        {
+            "payId":"1",
+            "name":"1元礼包",
+            "skuId":"fun.photonfox.cn.goods.p0017",
+            "price":100,
+            "description":"一小包好东西",
+            "imageUrl":"https://tcdng001.photonfox.cn/WebShop/images/gift_pack_small.png"
+        },
+        {
+            "payId":"2",
+            "name":"6元礼包",
+            "skuId":"fun.photonfox.cn.goods.p0099",
+            "price":600,
+            "description":"一小包好东西",
+            "imageUrl":"https://tcdng001.photonfox.cn/WebShop/images/gift_pack_small.png"
+        },
+        {
+            "payId":"3",
+            "name":"12元礼包",
+            "skuId":"fun.photonfox.cn.goods_01.p0199",
+            "price":1200,
+            "description":"一小包好东西",
+            "imageUrl":"https://tcdng001.photonfox.cn/WebShop/images/gift_pack_small.png"
+        }
+    ]
 }
 ```
 
